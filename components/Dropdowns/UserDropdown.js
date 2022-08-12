@@ -33,7 +33,7 @@ const UserDropdown = () => {
           }}
         >
           <div className="items-center flex">
-            <span className="w-12 h-12 text-sm text-white bg-purple-500 inline-flex items-center justify-center rounded-full">
+            <span className="w-12 h-12 text-sm text-white bg-purple-500 inline-flex items-center uppercase justify-center rounded-full">
               {`${user?.first_name[0]}${user?.last_name[0]}`}
             </span>
           </div>
@@ -43,7 +43,7 @@ const UserDropdown = () => {
             dropdownPopoverShow ? "block " : "hidden"
           }`}
         >
-          <span className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">
+          <span className="text-sm py-2 uppercase px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">
             {user?.first_name + " " + user?.last_name}
           </span>
 

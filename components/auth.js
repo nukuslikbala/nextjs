@@ -27,7 +27,7 @@ export const useLoggedInOrRiderect = () => {
 
   useEffect(() => {
     if (user === null) {
-      router.replace(`/login/?next=${router.asPath}`);
+      router.replace(`/?next=${router.asPath}`);
     }
   }, [user]);
 
