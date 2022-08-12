@@ -1,6 +1,15 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-}
+module.exports = () => {
+  const rewrites = () => {
+    return [
+      {
+        source: "/api/:path*/",
+        destination: "http://xrxrxrxr.suniyidrok.uz/api/:path*/",
+      },
+    ];
+  };
 
-module.exports = nextConfig
+  return {
+    trailingSlash: true,
+    rewrites,
+  };
+};
