@@ -3,7 +3,7 @@ module.exports = () => {
     return [
       {
         source: "/api/:path*/",
-        destination: "http://xrxrxrxr.suniyidrok.uz/api/:path*/",
+        destination: "http://exex.suniyidrok.uz/api/:path*/",
       },
     ];
   };
