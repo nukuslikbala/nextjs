@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { default as NumberFormat } from "react-number-format";
 import Select from "react-select";
 
@@ -171,9 +171,10 @@ function DropDown({ users }) {
     setCourseVisible(false);
     router.reload();
   }
-  function submitPayment() {
+  const submitPayment = useCallback(() => {
     axios.post(`/api/payment/${users.id}/deleteaccount/`, payment);
-  }
+    setPayment(null);
+  }, [payment]);
 
   return (
     <>
