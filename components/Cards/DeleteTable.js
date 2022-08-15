@@ -172,8 +172,11 @@ function DropDown({ users }) {
     router.reload();
   }
   const submitPayment = useCallback(() => {
-    axios.post(`/api/payment/${users.id}/deleteaccount/`, payment);
-    setPayment(null);
+    axios
+      .post(`/api/payment/${users.id}/deleteaccount/`, payment)
+      .then((response) => {
+        setPaymentVisible(false);
+      });
   }, [payment]);
 
   return (
@@ -262,7 +265,6 @@ function DropDown({ users }) {
                 className="cursor-pointer bg-lightBlue-500 text-white rounded px-4 py-2"
                 type={"submit"}
                 value="Qabul qilish"
-                onClick={submitPayment}
               />
               <div
                 className="ml-3 cursor-pointer bg-red-600 text-white rounded px-4 py-2"
