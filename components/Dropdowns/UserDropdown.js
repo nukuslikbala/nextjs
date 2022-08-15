@@ -51,7 +51,7 @@ const UserDropdown = () => {
             @{user?.username}
           </span>
 
-          <div className="h-0 my-1 border border-solid border-blueGray-100" />
+          <div className="h-0 my-1 border border-solid border-blueGray-100 " />
           <span
             className="text-sm cursor-pointer inline-block py-2 px-4 font-semibold w-full whitespace-nowrap bg-transparent text-red-600"
             onClick={() => {
