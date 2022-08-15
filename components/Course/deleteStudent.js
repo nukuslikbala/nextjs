@@ -1,7 +1,5 @@
 import axios from "axios";
-import router from "next/router";
-import { useEffect, useState } from "react";
-import Select from "react-select";
+import { useState } from "react";
 
 function DeleteStudent({ modalState, id, users }) {
   const [text, setText] = useState("");
@@ -28,7 +26,7 @@ function DeleteStudent({ modalState, id, users }) {
         onSubmit={submit}
         className="bg-white relative z-110 rounded shadow-lg border p-12"
       >
-        <p className="text-xl mb-8 text-center">Guruh almashtirish</p>
+        <p className="text-xl mb-8 text-center">Guruhda chiqarish</p>
         <input
           type={"text"}
           className="mb-6 w-48 rounded border-gray-400"

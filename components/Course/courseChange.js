@@ -6,7 +6,7 @@ import Select from "react-select";
 export default function CourseChange({ modalState, users, id }) {
   const [courseData, setCourseData] = useState(null);
   const [course, setCourse] = useState(null);
-
+  console.log(courseData);
   useEffect(() => {
     axios
       .get(`/api/swapping/account/${id}`)
