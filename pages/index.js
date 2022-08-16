@@ -4,11 +4,11 @@ import { useState } from "react";
 import { useSetUser, useUser } from "../components/auth";
 
 function Login() {
-  const [visible, setVisible] = useState(false);
   const router = useRouter();
   const setUser = useSetUser();
   const user = useUser();
   const [error, setError] = useState("");
+
   if (user) {
     router.push(router.query.next ?? "/admin/dashboard/");
   }

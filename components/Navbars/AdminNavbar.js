@@ -21,7 +21,6 @@ export default function Navbar() {
           </ul>
         </div>
       </nav>
-      {/* End Navbar */}
     </>
   );
 }

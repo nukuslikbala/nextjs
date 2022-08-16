@@ -1,18 +1,17 @@
-import React from "react";
-
 // components
 
 import CardLineChart from "components/Cards/CardLineChart.js";
 import CardBarChart from "components/Cards/CardBarChart.js";
 
-// layout for page
-
 import Admin from "layouts/Admin.js";
-import { useLoggedInOrRiderect } from "components/auth";
+import { useLoggedInOrRiderect, useUser } from "components/auth";
 
 export default function Dashboard() {
   const isLoggedIn = useLoggedInOrRiderect();
-
+  const user = useUser();
+  if (!user) {
+    return null;
+  }
   if (!isLoggedIn) {
     return null;
   }
