@@ -34,10 +34,9 @@ export default function Delete() {
     <>
       <div className="flex flex-wrap mt-4">
         <div className="w-full mb-12 px-4">
-          {data.map(
-            (el) =>
-              el.accounts.length > 0 && <DeleteTable key={el.id} table={el} />
-          )}
+          {data.map((el) => (
+            <DeleteTable key={el.id} table={el} />
+          ))}
         </div>
       </div>
     </>

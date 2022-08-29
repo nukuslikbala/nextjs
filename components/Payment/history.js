@@ -29,7 +29,7 @@ function History({ id }) {
   return (
     <>
       <p className="mb-8 text-xl font-semibold">History</p>
-      {data.map((item) => (
+      {data.reverse().map((item) => (
         <div key={item.id}>
           <HistoryCard user={item} />
         </div>

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { default as NumberFormat } from "react-number-format";
 
 function TotallPayments({ payments }) {
+  console.log(payments);
   return (
     <>
       <div className="rounded-t bg-white mb-0 pt-4 border-0">
@@ -39,7 +40,7 @@ function TotallPayments({ payments }) {
                   </tr>
                 </thead>
                 <tbody>
-                  {payments?.map((item, i) => {
+                  {payments?.reverse().map((item, i) => {
                     return (
                       <ChangeHistory user={item} index={i} key={item.id} />
                     );
