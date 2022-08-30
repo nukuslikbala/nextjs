@@ -1,10 +1,17 @@
 import axios from "axios";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useCallback, useEffect, useState } from "react";
 import { default as NumberFormat } from "react-number-format";
 import Select from "react-select";
+import log from "tailwindcss/lib/util/log";
 
 function DeleteTable({ table }) {
+  let count = 0;
+
+  const incerement = () => {
+    return count++;
+  };
   return (
     <>
       <div className="relative bg-white flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded ">
@@ -46,68 +53,17 @@ function DeleteTable({ table }) {
                       Sabab
                     </th>
                     <th className="text-center py-3 text-sm uppercase font-semibold">
+                      Kurs
+                    </th>
+                    <th className="text-center py-3 text-sm uppercase font-semibold">
                       Action
                     </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {table.accounts.map((item, i) => {
+                  {table?.map((el) => {
                     return (
-                      <tr
-                        className={`${i % 2 != 0 && "bg-blueGray-200"}`}
-                        key={item.id}
-                      >
-                        <th className="font-bold text-sm text-center px-2 py-3">
-                          {i + 1}
-                        </th>
-                        <td className="text-sm text-center px-2 py-3">
-                          {item.first_name}
-                        </td>
-                        <td className="text-sm text-center px-2 py-3">
-                          {item.last_name}
-                        </td>
-                        <td className="text-sm text-center px-2 py-3">
-                          {item.phone_number}
-                        </td>
-                        <td className="text-sm text-center px-2 py-3">
-                          {item.oquvchi_narxi}
-                        </td>
-                        <td className="text-sm text-center px-2 py-3">
-                          <NumberFormat
-                            value={
-                              !item.umumiy_summasi ? 0 : item.umumiy_summasi
-                            }
-                            className="foo"
-                            displayType={"text"}
-                            thousandSeparator={true}
-                            renderText={(value, props) => (
-                              <div {...props}>{value}</div>
-                            )}
-                          />
-                        </td>
-                        <td
-                          className={`text-sm ${
-                            item.qarzi > 0 ? "text-emerald-500" : "text-red-600"
-                          } text-center px-2 py-3`}
-                        >
-                          <NumberFormat
-                            value={item.qarzi}
-                            className="foo"
-                            displayType={"text"}
-                            thousandSeparator={true}
-                            prefix={item.qarzi > 0 && "+"}
-                            renderText={(value, props) => (
-                              <div {...props}>{value}</div>
-                            )}
-                          />
-                        </td>
-                        <td className="text-sm text-center px-2 py-3">
-                          {!item.delete_cause ? "Not given" : item.delete_cause}
-                        </td>
-                        <td className="text-sm text-center cursor-pointer px-2 py-3">
-                          <DropDown users={item} />
-                        </td>
-                      </tr>
+                      <Table key={el.id} data={el} incerement={incerement} />
                     );
                   })}
                 </tbody>
@@ -121,6 +77,67 @@ function DeleteTable({ table }) {
 }
 
 export default DeleteTable;
+
+function Table({ data, incerement }) {
+  // useEffect(() => {
+  //   incerement(data.accounts.length);
+  // }, [data]);
+  return (
+    <>
+      {data?.accounts.map((item, index) => {
+        const i = incerement();
+
+        return (
+          <tr className={`${i % 2 != 0 && "bg-blueGray-200"}`} key={item.id}>
+            <th className="font-bold text-sm text-center px-2 py-3">{i + 1}</th>
+            <td className="text-sm text-center px-2 py-3">{item.first_name}</td>
+            <td className="text-sm text-center px-2 py-3">{item.last_name}</td>
+            <td className="text-sm text-center px-2 py-3">
+              {item.phone_number}
+            </td>
+            <td className="text-sm text-center px-2 py-3">
+              {item.oquvchi_narxi}
+            </td>
+            <td className="text-sm text-center px-2 py-3">
+              <NumberFormat
+                value={!item.umumiy_summasi ? 0 : item.umumiy_summasi}
+                className="foo"
+                displayType={"text"}
+                thousandSeparator={true}
+                renderText={(value, props) => <div {...props}>{value}</div>}
+              />
+            </td>
+            <td
+              className={`text-sm ${
+                item.qarzi > 0 ? "text-emerald-500" : "text-red-600"
+              } text-center px-2 py-3`}
+            >
+              <NumberFormat
+                value={item.qarzi}
+                className="foo"
+                displayType={"text"}
+                thousandSeparator={true}
+                prefix={item.qarzi > 0 && "+"}
+                renderText={(value, props) => <div {...props}>{value}</div>}
+              />
+            </td>
+            <td className="text-sm text-center px-2 py-3">
+              {!item.delete_cause ? "Not given" : item.delete_cause}
+            </td>
+            <td className="text-sm text-center px-2 py-3 text-lightBlue-500 underline font-semibold">
+              <Link href={`/admin/tables/${data.id}/`}>
+                <a> {data.name}</a>
+              </Link>
+            </td>
+            <td className="text-sm text-center cursor-pointer px-2 py-3">
+              <DropDown users={item} />
+            </td>
+          </tr>
+        );
+      })}
+    </>
+  );
+}
 
 function DropDown({ users }) {
   const router = useRouter();

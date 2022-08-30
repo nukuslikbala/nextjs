@@ -34,9 +34,7 @@ export default function Delete() {
     <>
       <div className="flex flex-wrap mt-4">
         <div className="w-full mb-12 px-4">
-          {data.map((el) => (
-            <DeleteTable key={el.id} table={el} />
-          ))}
+          <DeleteTable table={data} />
         </div>
       </div>
     </>
